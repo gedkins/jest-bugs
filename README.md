@@ -7,7 +7,8 @@ These tests use fake libraries copied from a separate directory into node\_modul
 
 clean.sh simply removes the node\_modules directory and should restore each directory to the checked out state.
 
-jest-bug-1:
+jest-bug-1
+==========
 
 The setup:
 - We have two "libraries" called 'a' and 'b'. Each imports a corresponding "helper".
@@ -26,7 +27,8 @@ What you will see:
 What I would expect to see in the absense of a bug:
 - The original test case passes.
 
-jest-bug-2:
+jest-bug-2
+==========
 
 The setup:
 - We have three libraries, 'a', 'b' and 'c'
@@ -43,13 +45,16 @@ What happens:
 - When we run test2.js, Jest discovers 'c' in its shoulMockModuleCache and assumes that we want it mocked
 
 What you will see:
-- When you run ./run.sh you will see something like this:
+
+When you run ./run.sh you will see something like this:
+
     Using Jest CLI v11.0.0, jasmine2
     PASS  __tests__/test1.js (1.017s)
     FAIL  __tests__/test2.js (0.015s)
     Using Jest CLI v11.0.0, jasmine2
     PASS  __tests__/test2.js (0.016s)
-- Note that if for some reason Jest decides to run the files in a different order, you will not see the failure. I couldn't see a way to explictly specify an order, so I put in a kludge to make sure it happens in the order that I want.
+
+Note that if for some reason Jest decides to run the files in a different order, you will not see the failure. I couldn't see a way to explictly specify an order, so I put in a kludge to make sure it happens in the order that I want.
 
 What I would expect to see in the absense of a bug:
 - test2.js will always behave the same way, regardless of what other tests are run beforehand.
